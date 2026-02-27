@@ -1,0 +1,99 @@
+1.  Abstract factory:
+    Padrão criacional, que serve para:
+    -   Criar familias de objetos relacionados sem precisar especificar suas classes concretas
+
+    Em outras palavras:
+        -   Cria fabricas de fabricas
+
+2.  Qual problema resolve
+    Exemplo:
+    -   Imagina um sistema que funciona com temas diferentes:
+    -   Tema Light / Tema Dark
+
+    Cada tema precisa criar:
+    -   Botão
+    -   Janela
+    -   Checkbox
+
+    Voce não pode misturar botão ligth com a janela Dark
+
+    Sem Abstract factory -> cheio de if:
+
+        if tema == "light":
+            botao = BotaoLight()
+        elif tema == "dark":
+            botao = BotaoDark()
+
+3.  Solucção com Abstract factory
+    -   Interfaces abstratas dos produtos
+    -   Fabrica abstrata
+    -   Fabricas concretas que criam familias completas
+
+    Estrutura:
+
+    1.  Produtos Abstratos:
+        class Botao:
+            def render(self):
+                pass
+
+        class Janela:
+            def abrir(self):
+                pass
+
+    2.  Produtos concretos (familia light)
+        class BotaoLight(Botao):
+            def render(self):
+                print("Botão Light")
+
+        class JanelaLight(Janela):
+            def abrir(self):
+                print("Janela Light")
+
+    3.  Produtos concretos (familia dark)
+        class BotaoDark(Botao):
+            def render(self):
+                print("Botão Dark")
+
+        class JanelaDark(Janela):
+            def abrir(self):
+                print("Janela Dark")
+
+    4.  Fabrica abstrata
+        class FabricaUI:
+            def criar_botao(self):
+                pass
+            
+            def criar_janela(self):
+                pass
+
+    5.  Fabrica concretas
+        class FabricaLight(FabricaUI):
+            def criar_botao(self):
+                return BotaoLight()
+            
+            def criar_janela(self):
+                return JanelaLight()
+
+        class FabricaDark(FabricaUI):
+            def criar_botao(self):
+                return BotaoDark()
+            
+            def criar_janela(self):
+                return JanelaDark()
+
+    6.  Uso no código:  
+        def montar_interface(fabrica: FabricaUI):
+            botao = fabrica.criar_botao()
+            janela = fabrica.criar_janela()
+            
+            botao.render()
+            janela.abrir()
+
+        tema = "dark"
+
+        if tema == "dark":
+            fabrica = FabricaDark()
+        else:
+            fabrica = FabricaLight()
+
+        montar_interface(fabrica)
