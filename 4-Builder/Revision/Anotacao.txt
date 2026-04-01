@@ -1,0 +1,44 @@
+O que é o Builder?
+-   O builder serve para construir objetos complexos passo a passo
+-   Diferente dos outros:
+    -   Factory monta rápido
+    -   Builder montra com controle, etapa por etapa
+
+Exemplo (personagem customizavel)
+-   Criar um personagem com:
+    -   Classe (guerreiro, mago...)
+    -   Arma
+    -   Armadura
+    -   Habilidades
+    -   Pet
+
+Sem Build:
+
+    const personagem = new Personagem(
+        "Guerreiro",
+        "Espada",
+        "Armadura pesada",
+        ["Ataque forte", "Defesa"],
+        "Lobo"
+    );
+
+Com Build:
+
+    const personagem = new PersonagemBuilder()
+        .setClasse("Guerreiro")
+        .setArma("Espada")
+        .setArmadura("Pesada")
+        .addHabilidade("Ataque forte")
+        .addHabilidade("Defesa")
+        .setPet("Lobo")
+        .build();
+
+Estrutura:
+
+    Builder
+    ↓
+    configura passo a passo
+    ↓
+    build()
+    ↓
+    Objeto final pronto
