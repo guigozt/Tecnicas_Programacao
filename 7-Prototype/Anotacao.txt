@@ -1,0 +1,21 @@
+O que é o Prototype?
+-   Permite criar novos objetos copiando(clonando) um objeto existente, em vez de criar do zero
+
+Ideia:
+    Imagine um jogo com inimigos:
+    -   Zumbi base
+    -   Alien base
+
+Voce não precisa repetir:
+-   new Zumbi()
+
+Cria um modelo e clona:
+-   clone(zumbiBase)
+
+Estrutura:
+
+    Objeto Base (Prototype)
+            ↓
+    clone()
+            ↓
+    Novo objeto (cópia)
