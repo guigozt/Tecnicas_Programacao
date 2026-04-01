@@ -1,0 +1,21 @@
+O que é o Singleton?
+-   Garante que exista apenas UMA instância de uma classe no sistema inteiro
+-   E garante acesso global a ela
+
+Exemplo:
+-   Imagina isso num jogo:
+    -   Sistema de audio
+    -   Save de jogo
+    -   Configurações
+
+-   Não precisa repetir:
+    -   new AudioManager()
+
+Ideia:
+
+    Sistema inteiro
+        ↓
+    [ Singleton ]
+        ↓
+    Sempre retorna a MESMA instância
+
