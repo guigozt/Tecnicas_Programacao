@@ -1,0 +1,28 @@
+O que é Factory Method?
+    -   Padrão de projeto que serve para criar objetos sem precisar usar o "new" diretamente no código principal
+    -   Cria uma fábrica responsável por decidir qual objeto criar
+
+Ideia principal:
+    -   Criar transportes, mas não se preocupar se é carro, moto ou bicicleta
+    Então:
+
+    Fábrica de Transporte
+        ↓
+    decide o tipo
+        ↓
+    retorna o objeto certo
+
+Exemplo real:
+    -   Pede transporte:
+        -   Se for cidade ->    carro
+        -   Se for trilha ->    bicicleta
+        -   Se for entrega ->   moto
+
+Estrutura do Factory Method:
+    1.  Produto (interface)
+    2.  Produtos concretos (implementações)
+    3.  Fabrica (criador)
+
+
+Regra de ouro:
+    -   Deixe uma classe responsável por decidir qual objeto criar.”
