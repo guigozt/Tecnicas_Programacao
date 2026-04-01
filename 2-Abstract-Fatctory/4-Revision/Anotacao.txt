@@ -1,0 +1,29 @@
+O que é Abstract Factory:
+    -   É um padrão que cria familias de objetos relacionados, sem precisar especificar as classes concretas
+    -   Fábrica de fabricas
+
+Exemplo:
+    Imagina um jogo com facções diferentes:
+    -   Elfos
+    -   Mortos-vivos
+
+    Cada facção tem:
+    -   Guerreiros
+    -   Arqueiro
+
+    Mas cada um tem um estilo próprio.
+
+Estrutura:
+
+    Abstract Factory
+        ↓
+    ---------------------
+    | criarGuerreiro() |
+    | criarArqueiro()  |
+    ---------------------
+        ↓
+    Implementações
+        ↓
+    [ FabricaElfo ]   [ FabricaMortoVivo ]
+        ↓                    ↓
+    cria unidades       cria unidades
