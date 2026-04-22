@@ -2,10 +2,14 @@
   "name": "aula_22.04",
   "version": "1.0.0",
   "description": "Extrator de links em Markdown",
-  "main": "app.js",
   "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "extrai-links": "./src/cli.js"
+  },
   "scripts": {
-    "start": "node app.js"
+    "id":"fix1",
+    "cli": "node src/cli.js ./arquivos/texto.md"
   },
   "dependencies": {
     "chalk": "^5.3.0"
