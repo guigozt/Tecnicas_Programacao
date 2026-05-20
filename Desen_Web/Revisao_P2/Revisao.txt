@@ -1,0 +1,220 @@
+QUESTÃO-01: 
+    O Node.js possui uma arquitetura diferente dos servidores web tradicionais (como o
+    Apache com PHP ou Java), sendo single-threaded. Explique como o Node.js consegue suportar um
+    grande número de requisições concorrentes utilizando o Event Loop e as operações de I/O (Entrada
+    e Saída) não-bloqueantes.
+RESPOSTA:
+    Diferentes de servidores tradicionais, ele não cria thread para cada requisição. Em vez disso, existe uma unica thread principal responsável por executar o codigo.
+    Quando ocorre uma operação demorada , como leitura de arquivos ou acesso ao banco de dados, O node delega isso para o sistema operacional/libuv, e continua execuatando outras requisições sem bloquear a execução.
+    O Event Loop monitora essas operações assincronas. Quando uma operaçõa termina, o callback é colocado em uma fila e executado posteriormente pelo thread.
+
+-------------------------------
+
+QUESTÃO-02: 
+    Descreva o papel do V8 e da biblioteca libuv na arquitetura de funcionamento do
+    Node.js. Especifique quem gerencia as operações assíncronas de rede e sistema de arquivos, e como
+    o desenvolvedor interage com essa camada.
+RESPOSTA:
+    O V8 é o motor JavaScript criado pelo Google, utilizado pelo Node para interpretar e executar o código rápidamente
+    O libuv é a biblioteca responsável por fornecer:
+        -   Event Loop
+        -   Operações assincronas
+        -   Gerenciamento de I/O
+    O desenvolvedor interage com essa camada utilizando APIs como:
+        -   fs.readFile()
+        -   setTimeout()
+        -   fecth()
+
+-------------------------------
+
+QUESTÃO-03: 
+    Qual é o objetivo principal de um Web Service? Explique a diferença no retorno de
+    dados (Response) entre uma requisição HTTP tradicional baseada em HTML e a requisição para um
+    Web Service moderno.
+RESPOSTA:
+    O principal objetivo de um Web Service é permitir a comunicação entre diferentes sistemas atraves da rede.
+    Em uma requisição HTTP tradicional -> servidor retorna páginas HTML completas
+    Ja em um Web Service -> retorno é em formatos como: JSON e XML 
+
+-------------------------------
+
+QUESTÃO-04: 
+    Ao se comunicar com um Web Service via HTTP, é retornado um código sinalizando o
+    status da operação. Explique o que significam os códigos que iniciam com 2XX (ex: 200, 201), 4XX e
+    5XX.
+RESPOSTA:
+    Códigos 2XX: Indicam sucesso na operação.
+        - 200 -> Requisição executada com sucesso
+        - 201 -> Recurso criado com sucesso
+    Códigos 4XX: Indicam erro causado pelo cliente.
+        - 400 -> Requisição inválida
+        - 401 -> Usuario não autenticado
+        - 404 -> Recurso não encontrado
+    Codigos 5XX: Indicam erro no servidor
+        - 500 -> Erro generico no servidor
+        - 503 -> Serviço indisponivel
+
+-------------------------------
+
+QUESTÃO-05: 
+    O uso do NPM (Node Package Manager) é vital para o desenvolvimento em Node.js.
+    Qual a diferença conceitual e prática entre instalar um pacote localmente em um projeto e instalar
+    um pacote globalmente usando o argumento -g?.
+RESPOSTA
+    Instalação local -> npm install "nome_pacote"
+        O pacote fica dentro da pasta "node_modules" e fica disponivel apenas naquele projeto
+        Usado para: bibliotecas e dependencias da aplicação
+    Instalação global -> npm install -g "nome_pacote"
+        O pacote é instalado globalmente no sistema operacional
+        Usado para: ferramentas e utilitários
+
+-------------------------------
+
+QUESTÃO-06: 
+    No JavaScript assíncrono, o que é uma função de Callback? Explique o conceito e
+    como essa função age após a conclusão de uma operação assíncrona ou evento.
+RESPOSTA
+    Uma Callback Function é uma função passada como argumento para outra função
+    Ela é executada posteriormente após a conclusão de: Operação assincrona ou evento. Exemplo:
+        setTimeout(() => {
+            console.log("Executou depois)
+        }, 2000)
+
+-------------------------------
+
+QUESTÃO-07:
+    Uma Promise (Promessa) é um objeto que representa a eventual conclusão ou falha
+    de uma operação assíncrona. Descreva quais são os três estados possíveis de uma Promise durante
+    sua execução.
+RESPOSTA
+    Pending     ->  Operação ainda esta em execução
+    Fulfilled   ->  Operação concluida com sucesso
+    Rejected    ->  Operaçõa falhou
+
+-------------------------------
+
+QUESTÃO-08: 
+    Expressões Regulares (Regex) são padrões usados para mapear combinações de
+    caracteres em uma string. Discorra sobre como o Regex pode ser utilizado para otimizar a resolução
+    de problemas que envolvem buscas textuais, como a extração de URLs em um sistema.
+RESPOSTA
+    Regex permite identificar padrões em textos de forma rápida e eficiente
+    Na extração de URLs, é possivel localizar automaticamente links dentro dos textos sem precisar percorrer cada caractere. Exemplo:
+        - const regex = /https?:\/\/\S+/g
+
+-------------------------------
+
+QUESTÃO-09: 
+    Você deve criar um servidor Node.js simples do zero que comunique via protocolo
+    HTTP. Usando o módulo http, escreva o código para criar um servidor que escute a porta 3000 e
+    retorne uma resposta com status 200, o Content-Type como text/plain e exiba a mensagem: "Ola
+    Mundo Node!\n".
+RESPOSTA
+    const http = require('http')
+    const servidor = http.createServer((req, res) => {
+        res.writeHead(200, 'Content-Type': 'text/plain')
+    });
+    res.end('Hello World')
+
+    servidor.listen(3000, () => {
+        console.log('Servido rodando...')
+    })
+
+-------------------------------
+
+QUESTÃO-10: 
+    Para estruturar um projeto da FATEC, você criou um diretório exclusivo e precisa
+    gerenciá-lo com o NPM. Demonstre como deve ser configurado o arquivo package.json para adicionar
+    um script customizado chamado cli. O comando do script deve ser capaz de executar o arquivo cli.js
+    acompanhado da leitura de um texto na pasta de arquivos: "node cli.js ./arquivos/texto.md". Como o
+    aluno deve chamar esse comando no terminal?.
+RESPOSTA
+    Arquivo package.js:
+        {
+            "name": "meu_projeto",
+            "scripts": {
+                "cli": "node cli.js ./arquivos/texto.md"
+            }
+        }
+
+    Rodar comando:
+        npm run cli
+
+-------------------------------
+
+QUESTÃO-11: 
+    Para consolidar o uso de Callbacks, implemente uma função em JavaScript chamada
+    calcula que receba dois valores (num1 e num2) e uma função callback como parâmetros. A função
+    deve realizar a soma dos valores e passar o resultado para o callback. Em seguida, escreva a função
+    de callback imprimeResultado que apresente no console o texto: "O resultado da operação é:
+    [resultado]".
+RESPOSTA
+    function calcula(num1, num2, call){
+        const resultado = num1 + n2
+        callback(resultado)
+    }
+
+    function imprimeResultado(resul) {
+        console.log(`A soma é ${resul}`)
+    }
+
+    calcula(10, 5, imprimeResultado)
+
+-------------------------------
+
+QUESTÃO-12:
+    Utilizando Promises puras, você precisa processar o resultado de uma operação.
+    Mostre a sintaxe de como usar os métodos .then() e .catch() para encadear a captura e tratamento de
+    um sucesso e de um erro em uma Promise instanciada como minhaPromise.
+RESPOSTA
+    minhaPromisse
+        .then((result) => {
+            console.log(result)
+        })
+        .catch((erro) => {
+            console.log(erro)
+        })
+
+-------------------------------
+
+QUESTÃO-13:
+    A sintaxe de async e await torna o código assíncrono mais limpo do que as Promises e
+    Callbacks. Desenvolva uma função async function usandoDados() que faça uma requisição fictícia
+    (fetch) a uma URL para buscar informações de usuários. O código deve aguardar a resposta (await) e
+    tratar a captura de dados (JSON) usando a estrutura try-catch.
+RESPOSTA
+    async function usandoDados(){
+        try {
+            const resposta = await fetch('http//...')
+            const dados = await resposta.json()
+            console.log(dados)
+        }catch (error) {
+            console.log(error)
+        }
+    }
+
+-------------------------------
+
+QUESTÃO-14: 
+    É comum a ocorrência de erros durante a leitura de arquivos em um projeto (por
+    exemplo, arquivo inexistente no diretório local). Escreva uma função auxiliar trataErro(erro) que lance
+    (usando o termo throw new Error) uma mensagem customizada unindo o código do erro e o texto "Não
+    há arquivo no caminho.".
+RESPOSTA
+    function trataErro(erro) {
+        throw new Error(`${error.code}: Não há arquivo no caminho`)
+    }
+
+-------------------------------
+
+QUESTÃO-15: 
+    Na validação do seu projeto prático de leitura de arquivos Markdown, você precisa
+    extrair hiperlinks. Crie a função extraiLinks(texto) que instancie a expressão regular
+    /\[([^\]]*)\]\((https?:\/\/[^$#\s].[^\s]*)\)/gm. Em seguida, utilize o método .match() na string do texto
+    para capturar e exibir todos os links extraídos diretamente no console.
+RESPOSTA
+    function extrairLinks(texto) {
+        const regex = /\[([^\]]*)\]\((https?:\/\/[^$#\s].[^\s]*)\)/gm
+        const links = text.match(regex)
+        console.log(links)
+    }
