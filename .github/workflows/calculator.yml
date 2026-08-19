@@ -22,7 +22,7 @@ jobs:
         run: pip install pytest
 
       - name: Testar soma
-        run: pytest test_soma.py -k test_somar
+        run: pytest Calculator_python/test_soma.py -k test_somar
 
 
   subtrair:
@@ -41,7 +41,7 @@ jobs:
         run: pip install pytest
 
       - name: Testar subtração
-        run: pytest test_subtrair.py -k test_subtrair
+        run: pytest Calculator_python/test_subtrair.py -k test_subtrair
 
 
   multiplicar:
@@ -60,7 +60,7 @@ jobs:
         run: pip install pytest
 
       - name: Testar multiplicação
-        run: pytest test_multiplicar.py -k test_multiplicar
+        run: pytest Calculator_python/test_multiplicar.py -k test_multiplicar
 
 
   dividir:
@@ -79,4 +79,4 @@ jobs:
         run: pip install pytest
 
       - name: Testar divisão
-        run: pytest test_dividir.py -k test_dividir
+        run: pytest Calculator_python/test_dividir.py -k test_dividir
