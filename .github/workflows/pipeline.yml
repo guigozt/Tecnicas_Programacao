@@ -3,3 +3,7 @@ name: First Pipeline
 on:
   push:
     branches:[main]
+
+jobs:
+  teste:
+    runs-on: ubuntu-latest
