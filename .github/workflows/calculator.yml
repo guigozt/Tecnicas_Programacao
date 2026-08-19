@@ -5,81 +5,78 @@ on:
     branches: [main]
 
 jobs:
-  
+
   somar:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar código repositório
+      - name: Baixar código do repositório
         uses: actions/checkout@v4
 
       - name: Configurar Python
-        uses: actions/setup-python@v5 
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-        
+
       - name: Instalar pytest
         run: pip install pytest
 
       - name: Testar soma
-        run:  pytest test_soma.py -k test_somar
+        run: pytest test_soma.py -k test_somar
 
-    subtrair:
-      runs-on: ubuntu-latest
 
-      steps:
-        - name: Baixar código repositório
-          uses: actions/checkout@v4
+  subtrair:
+    runs-on: ubuntu-latest
 
-        - name: Configurar Python
-          uses: actions/setup-python@v5 
-          with:
-            python-version: '3.12'
-        
-        - name: Instalar pytest
-          run: pip install pytest
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
 
-        - name: Testar soma
-          run:  pytest test_dividi.py -k test_subtrair
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-    subtrair:
-      runs-on: ubuntu-latest
+      - name: Instalar pytest
+        run: pip install pytest
 
-      steps:
-        - name: Baixar código repositório
-          uses: actions/checkout@v4
+      - name: Testar subtração
+        run: pytest test_subtrair.py -k test_subtrair
 
-        - name: Configurar Python
-          uses: actions/setup-python@v5 
-          with:
-            python-version: '3.12'
-        
-        - name: Instalar pytest
-          run: pip install pytest
 
-        - name: Testar multiplicar
-          run:  pytest test_multiplica.py -k test_multiplicar
+  multiplicar:
+    runs-on: ubuntu-latest
 
-    dividir:
-      runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
 
-      steps:
-        - name: Baixar código repositório
-          uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
 
-        - name: Configurar Python
-          uses: actions/setup-python@v5 
-          with:
-            python-version: '3.12'
-        
-        - name: Instalar pytest
-          run: pip install pytest
+      - name: Instalar pytest
+        run: pip install pytest
 
-        - name: Testar dividir
-          run:  pytest test_dividi.py -k test_dividir
+      - name: Testar multiplicação
+        run: pytest test_multiplicar.py -k test_multiplicar
 
-          
 
-          
+  dividir:
+    runs-on: ubuntu-latest
 
-    
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar pytest
+        run: pip install pytest
+
+      - name: Testar divisão
+        run: pytest test_dividir.py -k test_dividir
