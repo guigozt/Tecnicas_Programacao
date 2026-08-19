@@ -1,0 +1,85 @@
+name: Calculator
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  
+  somar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5 
+        with:
+          python-version: '3.12'
+        
+      - name: Instalar pytest
+        run: pip install pytest
+
+      - name: Testar soma
+        run:  pytest test_soma.py -k test_somar
+
+    subtrair:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Baixar código repositório
+          uses: actions/checkout@v4
+
+        - name: Configurar Python
+          uses: actions/setup-python@v5 
+          with:
+            python-version: '3.12'
+        
+        - name: Instalar pytest
+          run: pip install pytest
+
+        - name: Testar soma
+          run:  pytest test_dividi.py -k test_subtrair
+
+    subtrair:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Baixar código repositório
+          uses: actions/checkout@v4
+
+        - name: Configurar Python
+          uses: actions/setup-python@v5 
+          with:
+            python-version: '3.12'
+        
+        - name: Instalar pytest
+          run: pip install pytest
+
+        - name: Testar multiplicar
+          run:  pytest test_multiplica.py -k test_multiplicar
+
+    dividir:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Baixar código repositório
+          uses: actions/checkout@v4
+
+        - name: Configurar Python
+          uses: actions/setup-python@v5 
+          with:
+            python-version: '3.12'
+        
+        - name: Instalar pytest
+          run: pip install pytest
+
+        - name: Testar dividir
+          run:  pytest test_dividi.py -k test_dividir
+
+          
+
+          
+
+    
